@@ -1,5 +1,5 @@
 <?php
-include("../mymethods.php");
+include('../mymethods.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,38 +84,36 @@ footer {
         <div class="logo">
             <img src="img/favicon.png" alt="Hospital Logo">
         </div>
-        <h1>Welcome to Hospital Management System</h1>
-        <form class="login-form" action="" method="post">
-            <input type="text" placeholder="email" name="email" required>
+        <h1>REGISTRATION PAGE</h1>
+        <form class="login-form" action="" method="post"> 
+            <input type="text" placeholder="Username" name="username" required>
+            <input type="email" placeholder="email" name="email" required>
             <input type="password" placeholder="Password" name="password" required>
-            <button type="submit" name="submit">Log In</button>
-        </form>
-        <footer>
-            <p>Contact us: support@hospital.com | +1 234 567 890</p>
-            <p>if you have not an account <a href="registration.php">click here</a></p>
-        </footer>
-    </div>
-    <?php
+            <input type="text" placeholder="contact no." name="contact" >
+            <button type="submit" name="submit">REGISTER</button>
+            <?php
                 if(isset($_POST['submit']))
                 {
-                    $response = logInUser($_POST);
+                    $response=registerUser($_POST);
                     
-                    echo $response->num_rows;
-
-                    
-                     if ($response->num_rows >0) 
+                        if($response==1)
                         {
-                            session_start();
-                            $_SESSION['email'] = $_POST['email'];
-                            $_SESSION['type'] = 'user';
-                            header('location:index.php');
+                            header('location:login.php');
                         }
                         else
                         {
                             echo "error";
                         }
                 }
-                
+                else{
+                    echo "unsuccess"; 
+                }
             ?>
+        </form>
+        <footer>
+            <p>Contact us: support@hospital.com | +1 234 567 890</p>
+        </footer>
+    </div>
+    
 </body>
 </html>
